@@ -1,0 +1,14 @@
+#image-gallery .gallery-grid {
+    width: 100%;
+}
+
+#image-gallery .gallery-item {
+    width: 50%;
+    padding: 0.5rem;
+}
+
+#image-gallery .gallery-image {
+    width: 100%;
+    display: block;
+    border-radius: 0.25rem;
+}

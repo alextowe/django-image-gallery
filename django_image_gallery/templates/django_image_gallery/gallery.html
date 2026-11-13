@@ -1,0 +1,64 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'django_image_gallery/css/masonry.css' %}">
+<link rel="stylesheet" href="{% static 'django_image_gallery/css/gallery.css' %}">
+
+<div id="image-gallery">
+  <div class="image-gallery-container">
+
+    <div class="gallery-grid">
+      {% for image in gallery_images|slice:":8" %}
+        <div class="gallery-item">
+          <img src="{{ image.image.url }}" class="gallery-image" data-index="{{ forloop.counter0 }}" loading="lazy" alt="{{ image.title }}">
+        </div>
+      {% endfor %}
+    </div>
+
+    <template id="image-gallery-template">
+      {% for image in gallery_images|slice:"8:" %}
+        <div class="gallery-item">
+          <img src="{{ image.image.url }}" class="gallery-image" data-index="{{ forloop.counter0|add:8 }}" loading="lazy" alt="{{ image.title }}">
+        </div>
+      {% endfor %}
+    </template>
+
+    {% if gallery_images|length > 8 %}
+      <div class="image-gallery-controls">
+        <button id="image-gallery-load-more" type="button">
+          Load More
+        </button>
+
+        <button id="image-gallery-hide" type="button" hidden>
+          Hide Images
+        </button>
+      </div>
+    {% endif %}
+  </div>
+
+  <div id="image-gallery-modal" class="image-gallery-modal" hidden aria-hidden="true" tabindex="-1">
+    <div class="image-gallery-modal-content">
+
+      <button type="button" class="gallery-close" aria-label="Close gallery">
+        &times;
+      </button>
+
+      <button type="button" class="gallery-prev" aria-label="Previous image">
+        &#10094;
+      </button>
+
+      <div class="gallery-slide">
+        {% for image in gallery_images %}
+          <img src="{{ image.image.url }}" class="gallery-modal-image" data-index="{{ forloop.counter0 }}" alt="{{ image.title }}">
+        {% endfor %}
+      </div>
+
+      <button type="button" class="gallery-next" aria-label="Next image">
+        &#10095;
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'django_image_gallery/js/imagesloaded.pkgd.min.js' %}"></script>
+<script src="{% static 'django_image_gallery/js/masonry.pkgd.min.js' %}"></script>
+<script src="{% static 'django_image_gallery/js/gallery.js' %}"></script>

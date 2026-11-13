@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-image-gallery"
+version = "0.1.0"
+description = "A Django image gallery application."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+
+authors = [
+    { name = "Alexander Towe" },
+]
+
+dependencies = [
+    "Django>=5.2,<7.0",
+    "Pillow>=10.0",
+]
+
+classifiers = [
+    "Framework :: Django",
+    "Framework :: Django :: 5.2",
+    "Framework :: Django :: 6.0",
+    "Framework :: Django :: 6.1",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.14",
+]
+
+[project.urls]
+Homepage = "https://github.com/alextowe/django-image-gallery"
+Repository = "https://github.com/alextowe/django-image-gallery"
+Issues = "https://github.com/alextowe/django-image-gallery/issues"
+
+[tool.setuptools]
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+
+[tool.setuptools.packages.find]
+include = ["django_image_gallery*"]
+
+[tool.setuptools.package-data]
+django_image_gallery = [
+    "templates/**/*.html",
+    "static/**/*",
+    "migrations/*.py",
+]
